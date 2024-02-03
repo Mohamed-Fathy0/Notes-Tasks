@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:notes_and_tasks/view/widgets/container_note.dart';
+import 'package:notes_and_tasks/viewmodel/data.dart';
 
 class NotesScreen extends StatelessWidget {
   const NotesScreen({super.key});
@@ -8,20 +9,13 @@ class NotesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: GridView(
-        clipBehavior: Clip.none,
+      body: GridView.builder(
         padding: const EdgeInsets.all(10),
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
         ),
-        children: const [
-          ContainerNote(
-            title: 'one title',
-          ),
-          ContainerNote(
-            title: 'two',
-          ),
-        ],
+        itemCount: notes.length,
+        itemBuilder: (context, index) => const ContainerNote(),
       ),
     );
   }

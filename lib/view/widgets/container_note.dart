@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 
 class ContainerNote extends StatelessWidget {
-  final String title;
   const ContainerNote({
-    Key? key,
-    required this.title,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -24,11 +22,11 @@ class ContainerNote extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 10),
+            const Padding(
+              padding: EdgeInsets.only(top: 10),
               child: Text(
-                title,
-                style: const TextStyle(
+                "title",
+                style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 16, // Adjust font size if needed
                 ),
@@ -36,10 +34,10 @@ class ContainerNote extends StatelessWidget {
             ),
             Container(
               alignment: Alignment.centerLeft,
-              child: Padding(
-                padding: const EdgeInsets.all(10),
+              child: const Padding(
+                padding: EdgeInsets.all(10),
                 child: Text(
-                  title,
+                  "titleLarge",
                 ),
               ),
             ),
