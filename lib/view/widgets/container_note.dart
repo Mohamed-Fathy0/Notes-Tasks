@@ -1,8 +1,16 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'package:notes_and_tasks/viewmodel/cubit/note_cubit.dart';
+import 'package:notes_and_tasks/viewmodel/data.dart';
+
+// ignore: must_be_immutable
 class ContainerNote extends StatelessWidget {
-  const ContainerNote({
+  int i = 0;
+  ContainerNote({
     super.key,
+    required this.i,
   });
 
   @override
@@ -19,29 +27,34 @@ class ContainerNote extends StatelessWidget {
         ),
         height: 200,
         width: containerWidth,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const Padding(
-              padding: EdgeInsets.only(top: 10),
-              child: Text(
-                "title",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16, // Adjust font size if needed
+        child: BlocBuilder<NoteCubit, NoteState>(
+          bloc: NoteCubit(),
+          builder: (context, state) {
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(top: 10),
+                  child: Text(
+                    notes[i].title,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16, // Adjust font size if needed
+                    ),
+                  ),
                 ),
-              ),
-            ),
-            Container(
-              alignment: Alignment.centerLeft,
-              child: const Padding(
-                padding: EdgeInsets.all(10),
-                child: Text(
-                  "titleLarge",
+                Container(
+                  alignment: Alignment.centerLeft,
+                  child: Padding(
+                    padding: const EdgeInsets.all(10),
+                    child: Text(
+                      notes[i].note!,
+                    ),
+                  ),
                 ),
-              ),
-            ),
-          ],
+              ],
+            );
+          },
         ),
       ),
     );
