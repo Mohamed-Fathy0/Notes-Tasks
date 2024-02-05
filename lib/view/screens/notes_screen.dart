@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:notes_and_tasks/model/models.dart';
 import 'package:notes_and_tasks/view/widgets/container_note.dart';
 import 'package:notes_and_tasks/view/widgets/floating_action_button.dart';
 import 'package:notes_and_tasks/viewmodel/data.dart';
@@ -19,6 +20,8 @@ class NotesScreen extends StatelessWidget {
         itemCount: notes.length,
         itemBuilder: (context, index) => ContainerNote(
           i: index,
+          noteModel:
+              NoteModel(title: notes[index].title, note: notes[index].note),
         ),
       ),
     );

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes_and_tasks/view/screens/write_note_screen.dart';
+import 'package:notes_and_tasks/viewmodel/cubit/note_cubit.dart';
 
 class CustomFloatingActionButton extends StatelessWidget {
   const CustomFloatingActionButton({
@@ -8,18 +10,26 @@ class CustomFloatingActionButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FloatingActionButton(
-      onPressed: () {
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => const WriteNote(),
-            ));
+    return BlocBuilder<NoteCubit, NoteState>(
+      builder: (context, state) {
+        final myCubit = BlocProvider.of<NoteCubit>(context);
+
+        return FloatingActionButton(
+          onPressed: () {
+            myCubit.addNote(myCubit.controllerTitle, myCubit.controllerNote);
+            print("object");
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const WriteNote(),
+                ));
+          },
+          child: const Icon(
+            Icons.add,
+            color: Colors.black,
+          ),
+        );
       },
-      child: const Icon(
-        Icons.add,
-        color: Colors.black,
-      ),
     );
   }
 }
